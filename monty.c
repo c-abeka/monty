@@ -6,7 +6,7 @@
  * *argv: arguments
  * Return: EXIT_SUCCESS on success and EXIT_FAILURE on fail
  */
-int main(int argc, char argv[])
+int main(int argc, char *argv[])
 {
 	FILE *file =  NULL;
 
@@ -23,6 +23,6 @@ int main(int argc, char argv[])
 		exit(EXIT_FAILURE);
 	}
 
-	parsefile(file);
+	get_line(argv[1]);
 	return (EXIT_SUCCESS);
 }

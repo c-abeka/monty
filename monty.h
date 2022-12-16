@@ -40,5 +40,7 @@ typedef struct instruction_s
 void push(stack_t **stack, unsigned int var);
 void push_queue(stack_t **stack, unsigned int var);
 void pall(stack_t **stack, unsigned int line_number);
+char *get_line(char *file);
+char **split_line(char *line);
 
 #endif /* MONTY_H */
