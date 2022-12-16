@@ -3,12 +3,12 @@
 /**
  * push - pushes an element to the stack
  * @stack: the stack
- * @var: the element to be pushed
+ * @line: the element to be pushed
  * Return: none
  */
-int push(stack_t **stack, unsigned int line)
+void push(stack_t **stack, unsigned int line)
 {
-	stack_t **node = NULL;
+	stack_t *node = NULL;
 	
 
 	if (stack == NULL)
@@ -17,17 +17,26 @@ int push(stack_t **stack, unsigned int line)
 		exit(EXIT_FAILURE);
 	}
 	node = malloc(sizeof(stack_t));
-	if (node = NULL)
+	if (node == NULL)
 	{
 		fprintf(stderr, "Error: malloc failed\n");
 		free(stack);
 		exit(EXIT_FAILURE);
 	}
+	node->n = line;
+
+	if (*stack)
+	{
+		node->next = *stack;
+		node->prev = (*stack)->prev;
+		(*stack)->prev = node;
+		*stack = node;
+		return;
+	}
 
 	node->next = *stack;
 	node->prev = NULL;
-	node->n = arg.arg;
-	if (*stack)
-		(*stack)->prev = node;
 	*stack = node;
+
+	
 }

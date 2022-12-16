@@ -9,9 +9,6 @@ char *get_line(char *file)
 {
 	FILE *fptr;
 	char *line = NULL;
-	char **commands = NULL;
-	unsigned int line_number = 1;
-	size_t n = 0;
 	stack_t *head = NULL;
 
 	fptr = fopen(file, "r");
@@ -20,16 +17,7 @@ char *get_line(char *file)
 		fprintf(stderr, "Error: Can't open file %s\n", file);
 		exit(EXIT_FAILURE);
 	}
-	while (getline(&line, &n, fptr) != -1)
-	{
-		commands = split_line(line);
-
-		if (commands)
-			checker(line_number, commands, &head, fptr);
-
-		free(commands);
-		line_number++;
-	}
+	
 	free(line);
 	free(head);
 	fclose(fptr);
